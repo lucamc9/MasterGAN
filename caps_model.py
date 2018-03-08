@@ -185,15 +185,17 @@ class DCGAN_Caps(object):
                 sample_inputs = np.array(sample).astype(np.float32)
 
         counter = 1
+        start_epoch = 0
         start_time = time.time()
         could_load, checkpoint_counter = self.load(self.checkpoint_dir)
         if could_load:
             counter = checkpoint_counter
             print(" [*] Load SUCCESS")
+            start_epoch = (counter / 1094) + 1
         else:
             print(" [!] Load failed...")
 
-        for epoch in xrange(config.epoch):
+        for epoch in xrange(start_epoch, config.epoch):
             if config.dataset == 'mnist':
                 batch_idxs = min(len(self.data_X), config.train_size) // config.batch_size
             else:
@@ -312,7 +314,7 @@ class DCGAN_Caps(object):
                         except:
                             print("one pic error!...")
 
-                if np.mod(counter, 500) == 2:
+                if np.mod(counter, 1094) == 0:
                     self.save(config.checkpoint_dir, counter)
 
     def discriminator(self, x_image, reuse=False):
