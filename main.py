@@ -27,6 +27,7 @@ flags.DEFINE_boolean("train", False, "True for training, False for testing [Fals
 flags.DEFINE_boolean("crop", False, "True for training, False for testing [False]")
 flags.DEFINE_boolean("visualize", False, "True for visualizing, False for nothing [False]")
 flags.DEFINE_integer("generate_test_images", 100, "Number of images to generate during test. [100]")
+# flags.DEFINE_integer("load_checkpoint", False, "Whether to resume training from last checkpoint")
 FLAGS = flags.FLAGS
 
 def main(_):
