@@ -44,4 +44,6 @@ mkdir -p $EVAL_DIR
 
 # To change training size just add the --train_size label, e.g. --train_size=200000
 
-python main.py --dataset mnist --input_height=28 --output_height=28 --checkpoint_dir=$TRAIN_DIR --sample_dir=$EVAL_DIR --train --model capsgan
+python download.py mnist
+
+#python main.py --dataset mnist --input_height=28 --output_height=28 --checkpoint_dir=$TRAIN_DIR --sample_dir=$EVAL_DIR --train --model capsgan
