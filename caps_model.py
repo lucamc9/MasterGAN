@@ -191,7 +191,7 @@ class DCGAN_Caps(object):
         if could_load:
             counter = checkpoint_counter
             print(" [*] Load SUCCESS")
-            start_epoch = (counter / 1094) + 1
+            start_epoch = int(counter / 1094)
         else:
             print(" [!] Load failed...")
 
