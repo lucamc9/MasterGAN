@@ -5,7 +5,7 @@
 #SBATCH --mem=16000  # memory in Mb
 #SBATCH -o sample_experiment_outfile  # send stdout to sample_experiment_outfile
 #SBATCH -e sample_experiment_errfile  # send stderr to sample_experiment_errfile
-#SBATCH -t 2:00:00  # time requested in hour:minute:secon
+#SBATCH -t 8:00:00  # time requested in hour:minute:secon
 
 export CUDA_HOME=/opt/cuda-8.0.44
 
@@ -32,10 +32,10 @@ export TMP=/disk/scratch/${STUDENT_ID}/
 source /home/${STUDENT_ID}/miniconda3/bin/activate mlp
 
 # Activate experiment variables -- Change the name experiment for something meaningful
-mkdir -p mnist_dir/experiment
+mkdir -p mnist_dir/experiment_full25
 
-TRAIN_DIR=mnist_dir/experiment/train
-EVAL_DIR=mnist_dir/experiment/eval
+TRAIN_DIR=mnist_dir/experiment_full25/train
+EVAL_DIR=mnist_dir/experiment_full25/eval
 
 # After training I'd recomment move logs, error/output files and such inside the experiment folder
 
@@ -44,6 +44,6 @@ mkdir -p $EVAL_DIR
 
 # To change training size just add the --train_size label, e.g. --train_size=200000
 
-python download.py mnist
+#python download.py mnist
 
-#python main.py --dataset mnist --input_height=28 --output_height=28 --checkpoint_dir=$TRAIN_DIR --sample_dir=$EVAL_DIR --train --model capsgan
+python main.py --dataset mnist --input_height=28 --output_height=28 --checkpoint_dir=$TRAIN_DIR --sample_dir=$EVAL_DIR --train --model capsgan
