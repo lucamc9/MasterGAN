@@ -3,7 +3,7 @@ import scipy.misc
 import numpy as np
 
 from model import DCGAN
-from caps_model import DCGAN_Caps
+from merged_model import DCGAN_Caps
 from utils import pp, visualize, to_json, show_all_variables
 
 import tensorflow as tf
@@ -27,6 +27,9 @@ flags.DEFINE_boolean("train", False, "True for training, False for testing [Fals
 flags.DEFINE_boolean("crop", False, "True for training, False for testing [False]")
 flags.DEFINE_boolean("visualize", False, "True for visualizing, False for nothing [False]")
 flags.DEFINE_integer("generate_test_images", 100, "Number of images to generate during test. [100]")
+flags.DEFINE_boolean("caps_on_g", True, "True for capsule network in generator. [True]")
+flags.DEFINE_boolean("caps_on_d", True, "True for capsule network in discriminator. [True]")
+flags.DEFINE_boolean("train_g_twice", False, "True for training the generator twice (as in original code). [False]")
 # flags.DEFINE_integer("load_checkpoint", False, "Whether to resume training from last checkpoint")
 FLAGS = flags.FLAGS
 
@@ -64,7 +67,10 @@ def main(_):
                 input_fname_pattern=FLAGS.input_fname_pattern,
                 crop=FLAGS.crop,
                 checkpoint_dir=FLAGS.checkpoint_dir,
-                sample_dir=FLAGS.sample_dir)
+                sample_dir=FLAGS.sample_dir,
+                caps_on_g=FLAGS.caps_on_g,
+                caps_on_d=FLAGS.caps_on_d,
+                train_g_twice=FLAGS.train_g_twice)
         else:
             dcgan = DCGAN(
                 sess,
