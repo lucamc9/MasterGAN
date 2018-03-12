@@ -1,3 +1,7 @@
+#!/bin/sh
+#SBATCH -N 1	  # nodes requested
+#SBATCH -n 1	  # tasks requested
+#SBATCH --gres=gpu:1
 #SBATCH --mem=16000  # memory in Mb
 #SBATCH -o sample_experiment_outfile  # send stdout to sample_experiment_outfile_experiment_caps_on_both_g_twice
 #SBATCH -e sample_experiment_errfile  # send stderr to sample_experiment_errfile_experiment_caps_on_both_g_twice
