@@ -202,7 +202,7 @@ class DCGAN_Caps(object):
         if could_load:
             counter = checkpoint_counter
             print(" [*] Load SUCCESS")
-            start_epoch = int(counter / 1094)
+            start_epoch = int(counter / 282)
         else:
             print(" [!] Load failed...")
 
@@ -326,7 +326,7 @@ class DCGAN_Caps(object):
                         except:
                             print("one pic error!...")
 
-                if np.mod(counter, 1094) == 0:
+                if np.mod(counter, 282) == 0:
                     self.save(config.checkpoint_dir, counter)
 
 
